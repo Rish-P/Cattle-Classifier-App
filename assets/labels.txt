@@ -1,0 +1,5 @@
+0 ayrnshire cattle
+1 brown swiss cattle
+2 Holstein Friesian cattle
+3 red dane cattle
+4 Jersey cattle
