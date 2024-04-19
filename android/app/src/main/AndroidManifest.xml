@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kodeco.plantreco">
+    package="com.rishabhp.cattleclassifier">
    <application
         android:label="Plant Recogniser"
         android:name="${applicationName}"

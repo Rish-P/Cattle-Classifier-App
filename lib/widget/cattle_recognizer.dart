@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import 'package:image_picker/image_picker.dart';
+import '../auth/auth.dart';
 import '../classifier/classifier.dart';
 import '../styles.dart';
 import 'cattle_photo_view.dart';
@@ -57,6 +58,14 @@ class _CattleRecognizerState extends State<CattleRecognizer> {
     _classifier = classifier!;
   }
 
+  //LOGOUT FUNCTIONALITY
+  final AuthSerives _serives = AuthSerives();
+
+  void logOut(BuildContext context) async {
+    await _serives.logOut();
+  }
+  //
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -75,14 +84,12 @@ class _CattleRecognizerState extends State<CattleRecognizer> {
           const SizedBox(height: 10),
           _buildResultView(),
           const Spacer(flex: 5),
-          _buildPickPhotoButton(
-            title: 'Take a photo',
-            source: ImageSource.camera,
-          ),
+          
           _buildPickPhotoButton(
             title: 'Pick from gallery',
             source: ImageSource.gallery,
           ),
+          _buildLogoutButton(title: 'Logout'),
           const Spacer(),
         ],
       ),
@@ -111,6 +118,26 @@ class _CattleRecognizerState extends State<CattleRecognizer> {
       'In the Mooo-d for some classification!',
       style: kTitleTextStyle,
       textAlign: TextAlign.center,
+    );
+  }
+  Widget _buildLogoutButton({
+    required String title,
+  }) {
+    return TextButton(
+      onPressed: () => logOut(context),
+      child: Container(
+        width: 250,
+        height: 50,
+        color: kColorLightRed,
+        child: Center(
+            child: Text('Enough of cattle today :)',
+                style: const TextStyle(
+                  fontFamily: kButtonFont,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w700,
+                  color: kColorMayGreen,
+                ))),
+      ),
     );
   }
 
