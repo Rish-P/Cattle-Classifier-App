@@ -26,7 +26,8 @@ const kBgColor = kColorGreen;
 const kTitleTextStyle = TextStyle(
   fontFamily: kDisplayFont,
   fontSize: 50.0,
-  color: kColorAndroidGreen,
+  fontWeight: FontWeight.w900,
+  color: Colors.white,
   decoration: TextDecoration.none,
 );
 

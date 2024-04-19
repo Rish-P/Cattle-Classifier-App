@@ -5,8 +5,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import '../auth/auth.dart';
 import '../classifier/classifier.dart';
+import '../screens/home_screen.dart';
 import '../styles.dart';
 import 'cattle_photo_view.dart';
 
@@ -44,6 +46,18 @@ class _CattleRecognizerState extends State<CattleRecognizer> {
     _loadClassifier();
   }
 
+
+  //IMAGE LOCALLY SAVE
+  Future<File> saveImageLocally(File imageFile) async {
+  final directory = await getApplicationDocumentsDirectory();
+  final path = directory.path;
+  final File localImage = await imageFile.copy('$path/${DateTime.now().millisecondsSinceEpoch}.png');
+  return localImage;
+}
+// void back(BuildContext context){
+//   CattleRecognizer.of(context).onBack();
+// }
+
   Future<void> _loadClassifier() async {
     debugPrint(
       'Start loading of Classifier with '
@@ -69,7 +83,7 @@ class _CattleRecognizerState extends State<CattleRecognizer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: kBgColor,
+      color: Colors.lightBlueAccent,
       width: double.infinity,
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -89,7 +103,12 @@ class _CattleRecognizerState extends State<CattleRecognizer> {
             title: 'Pick from gallery',
             source: ImageSource.gallery,
           ),
-          _buildLogoutButton(title: 'Logout'),
+          ElevatedButton(onPressed: (){Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen()),
+            );}, 
+          child: const Text('Enough of cattle today :)')),
+          // _buildBackButton(title: 'Back'),
           const Spacer(),
         ],
       ),
@@ -120,13 +139,17 @@ class _CattleRecognizerState extends State<CattleRecognizer> {
       textAlign: TextAlign.center,
     );
   }
-  Widget _buildLogoutButton({
-    required String title,
+
+  //BACK BUTTON
+  Widget _buildBackButton({
+    required String title 
   }) {
     return TextButton(
-      onPressed: () => logOut(context),
+      onPressed: () {
+        Navigator.pop(context);
+      },
       child: Container(
-        width: 250,
+        width: 300,
         height: 50,
         color: kColorLightRed,
         child: Center(
@@ -134,7 +157,7 @@ class _CattleRecognizerState extends State<CattleRecognizer> {
                 style: const TextStyle(
                   fontFamily: kButtonFont,
                   fontSize: 16.0,
-                  fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.w800,
                   color: kColorMayGreen,
                 ))),
       ),
@@ -150,14 +173,14 @@ class _CattleRecognizerState extends State<CattleRecognizer> {
       child: Container(
         width: 300,
         height: 50,
-        color: kColorBrown,
+        color: Colors.blue[500],
         child: Center(
             child: Text(title,
                 style: const TextStyle(
                   fontFamily: kButtonFont,
                   fontSize: 20.0,
                   fontWeight: FontWeight.w600,
-                  color: kColorLightYellow,
+                  color: Colors.white,
                 ))),
       ),
     );

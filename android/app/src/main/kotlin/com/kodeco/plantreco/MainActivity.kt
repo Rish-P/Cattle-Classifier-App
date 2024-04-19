@@ -1,4 +1,4 @@
-package com.rishabhp.cattleclassifier
+package com.rishabhp.cattleclassifier_final
 
 import io.flutter.embedding.android.FlutterActivity
 

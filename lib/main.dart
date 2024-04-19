@@ -5,6 +5,7 @@ import './auth/auth.dart';
 import 'package:provider/provider.dart';
 import 'controller.dart';
 import 'models/user_model.dart';
+import 'networkmanager.dart';
 
 // void main() async {
 //   WidgetsFlutterBinding.ensureInitialized();
@@ -15,6 +16,8 @@ import 'models/user_model.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
+final networkManager = NetworkManager();
+  networkManager.startMonitoring();
 
   runApp(const MyApp());
 }

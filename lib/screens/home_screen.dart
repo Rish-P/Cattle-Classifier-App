@@ -23,9 +23,31 @@ import 'package:fluttertoast/fluttertoast.dart';
 // import 'package:firebase_storage/firebase_storage.dart';
 
 
+class BackgroundImage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/cow_bg.jpg'), // Replace with your image path
+          fit: BoxFit.cover, // This ensures the image covers the whole screen
+        ),
+      ),
+    );
+  }
+}
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: BackgroundImage(),
+      ),
+    );
+  }
 
   @override
   // ignore: library_private_types_in_public_api
@@ -47,38 +69,59 @@ class _HomeScreenState extends State<HomeScreen> {
       initialData: null,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Home Screen'),
+          title: const Text('Know your cattle!'),
           centerTitle: true,
           actions: [
             TextButton.icon(
               onPressed: () => logOut(context),
-              icon: const Icon(
-                Icons.play_circle_fill_outlined,
-                color: Colors.black,
+              icon: Icon(
+                Icons.logout,
+                color: Colors.red,
               ),
               label: Text(
-                'NEXT',
+                'log out',
                 style: TextStyle(
                   color: Colors.white,
                 ),
               ),
             ),
+            
           ] 
         ),
         // body: ListWidget(),
-        body: Center(
+        body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/cow_bg.jpg'), // Replace with your image path
+            fit: BoxFit.cover, // Ensures the image covers the whole screen
+          ),
+        ),
+        child: Align(
+          alignment: Alignment.center, // Adjust this value to move the button
+          child: Padding(
+            padding: EdgeInsets.only(top: 200.0),
+        
         child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.white, 
+            backgroundColor: Colors.lightGreen[400] // Background color
+          ),
+          
           onPressed: () {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => MainApp()),
             );
           },
+          
           child: Text('CATTLE CLASSIFIER'),
         ),
+        
       ),
+      
     )
-      ,
+      ) 
+      )
     );
   }
 }
