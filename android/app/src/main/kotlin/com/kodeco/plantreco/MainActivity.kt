@@ -1,4 +1,4 @@
-package com.rishabhp.cattleclassifier_final
+package com.kodeco.plantreco
 
 import io.flutter.embedding.android.FlutterActivity
 
