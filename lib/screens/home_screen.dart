@@ -5,10 +5,8 @@ import '../app.dart';
 import '../auth/auth.dart';
 import '../auth/database.dart';
 import '../models/data_test.dart';
-import '../widget/list_test.dart';
 import '../widget/input_widget.dart';
 import '../widget/register.dart';
-import '../widget/setting.dart';
 import '../widget/sign.dart';
 import 'package:provider/provider.dart';
 
