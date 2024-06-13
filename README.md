@@ -1,1 +1,1 @@
-# Rishabh_Cattle-Classifier_FrontiersMarket
+# Cattle Classifier - Tflite model used for Image Classification
